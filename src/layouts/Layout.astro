@@ -1,0 +1,401 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "A podcast about human-centered technology." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		
+		<!-- SEO & Social Meta Tags -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta name="twitter:card" content="summary_large_image" />
+		
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&family=Kameron:wght@400;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="layout">
+			<aside class="site-sidebar">
+				<a href="/" class="logo-link">
+					<div class="logo-container">HO<span class="accent-dot">.</span></div>
+				</a>
+				
+				<nav class="site-nav">
+					<a href="/about" class="nav-link">About</a>
+					<a href="https://www.thoughtfulapp.co" class="nav-link external-link" target="_blank" rel="noopener">
+						Thoughtful App Co
+						<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="external-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+					</a>
+				</nav>
+				
+				<div class="sidebar-block host-profile">
+					<div class="host-image-wrapper">
+						<div class="host-photo" role="img" aria-label="Erikk Shupp"></div>
+					</div>
+					<div class="host-info">
+						<a href="https://shupp.dev" target="_blank" rel="noopener" class="host-name nav-link">
+							Erikk Shupp
+							<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="external-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+						</a>
+						<p class="host-blurb">
+							The captcha of podcasts. Proving we are human in an increasingly synthetic world.
+						</p>
+					</div>
+				</div>
+				
+				<div class="sidebar-block cta-block">
+					<h3>Believe in Humans?</h3>
+					<p>
+						<a href="https://open.spotify.com/show/5795Q9GCmotmDpParHL1v6" target="_blank" rel="noopener">Like on Spotify</a>
+						{/* <br/>
+						<a href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener">Subscribe on YouTube</a> */}
+					</p>
+				</div>
+				
+				<div class="sidebar-block">
+					<div class="listen-links">
+						<a href="#" target="_blank" rel="noopener">Spotify</a>
+						<a href="#" target="_blank" rel="noopener">Apple Podcasts</a>
+						<a href="#" target="_blank" rel="noopener">YouTube</a>
+						<a href="/rss.xml">RSS Feed</a>
+					</div>
+				</div>
+
+				<div class="sidebar-block projects-block">
+					<h3>Projects</h3>
+					<p><a href="https://www.thoughtfulapp.co" target="_blank" rel="noopener">Apps for Humans</a><br/>Thoughtful applications that respect your attention.</p>
+				</div>
+			</aside>
+			
+			<main>
+				<slot />
+			</main>
+		</div>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		/* Palette: Silver / Charcoal / Stone / Clay (Warm Grays) */
+		/* Hue ~30deg for warmth */
+		
+		--c-bg: hsl(30, 10%, 97%);        /* Almost white clay */
+		--c-surface: hsl(30, 8%, 93%);    /* Light stone */
+		--c-surface-hover: hsl(30, 8%, 90%); 
+		--c-border: hsl(30, 6%, 86%);     /* Silver */
+		
+		--c-text-subtle: hsl(30, 4%, 60%); /* Muted silver */
+		--c-text-muted: hsl(30, 4%, 45%);  /* Stone gray */
+		--c-text: hsl(30, 4%, 25%);        /* Charcoal */
+		--c-heading: hsl(30, 4%, 10%);     /* Deep charcoal/black */
+		
+		--c-accent: hsl(30, 6%, 50%);      /* Balanced clay/stone */
+		
+		/* New Accents */
+		--c-accent-gunmetal: hsl(260, 20%, 30%); /* Deep Purple Gunmetal */
+		--c-accent-orange: hsl(25, 100%, 50%);   /* Crazy Bright Orange */
+
+		/* Spacing */
+		--space-1: 0.5rem;   /* 8px */
+		--space-2: 1rem;     /* 16px */
+		--space-3: 1.5rem;   /* 24px */
+		--space-4: 2rem;     /* 32px */
+		--space-6: 3rem;     /* 48px */
+		--space-8: 4rem;     /* 64px */
+		
+		/* Typography */
+		--font-heading: 'Noto Serif', serif;
+		--font-subheading: 'Fira Sans', sans-serif;
+		--font-body: 'Kameron', serif;
+		--font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+	}
+
+	/* Minimalist Reset */
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	html {
+		font-family: var(--font-body);
+		background-color: var(--c-bg);
+		color: var(--c-text);
+		line-height: 1.6;
+		font-size: 16px;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	body {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.2s ease, color 0.2s ease;
+	}
+
+	a:hover {
+		color: var(--c-heading);
+		border-bottom-color: var(--c-text-subtle);
+	}
+
+	h1 {
+		font-family: var(--font-heading);
+		color: var(--c-heading);
+		font-weight: 700;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+	}
+	
+	h2, h3, h4, h5, h6 {
+		font-family: var(--font-subheading);
+		color: var(--c-heading);
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: -0.01em;
+	}
+	
+	/* Logo specific override */
+	.logo-container {
+		font-family: var(--font-heading);
+	}
+
+	/* Layout Container */
+	.layout {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: var(--space-6) var(--space-3);
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--space-8);
+	}
+	
+	@media (min-width: 768px) {
+		.layout {
+			grid-template-columns: 300px 1fr;
+			align-items: start;
+		}
+	}
+	
+	.accent-dot {
+		color: var(--c-accent-orange);
+	}
+
+	/* Sidebar (was Header) */
+	.site-sidebar {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-6);
+	}
+	
+	@media (min-width: 768px) {
+		.site-sidebar {
+			position: sticky;
+			top: var(--space-6);
+			max-height: calc(100vh - var(--space-6) * 2);
+			overflow-y: auto;
+		}
+	}
+
+	.logo-container {
+		width: 64px;
+		height: 64px;
+		background-color: var(--c-heading);
+		color: var(--c-bg);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		font-size: 1.5rem;
+		line-height: 1;
+		border-radius: 4px; /* Slight rounding */
+		text-align: center;
+		padding: 4px;
+	}
+	
+	.logo-link {
+		display: block;
+		width: fit-content;
+		border-bottom: none !important;
+	}
+	
+	.logo-link:hover {
+		opacity: 0.9;
+	}
+
+	.site-nav {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		align-items: flex-start;
+	}
+
+	.nav-link {
+		font-family: var(--font-subheading);
+		color: var(--c-text-muted);
+		font-size: 0.9375rem;
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+	}
+	
+	.nav-link:hover {
+		color: var(--c-accent-gunmetal); 
+	}
+	
+	.external-icon {
+		opacity: 0.7;
+	}
+	
+	.nav-link:hover .external-icon {
+		opacity: 1;
+		color: var(--c-accent-orange); 
+	}
+	
+	/* Sidebar Components */
+	.sidebar-block {
+		padding-top: var(--space-4);
+		border-top: 1px solid var(--c-border);
+	}
+	
+	.sidebar-block:first-child {
+		border-top: none;
+		padding-top: 0;
+	}
+	
+	.host-profile {
+		display: flex;
+		flex-direction: row;
+		gap: var(--space-3);
+		align-items: flex-start;
+	}
+	
+	.host-image-wrapper {
+		width: 80px;
+		height: 80px;
+		aspect-ratio: 1;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-shrink: 0; /* Don't shrink the image */
+	}
+	
+	.host-info {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+	
+	/* The "Triangle Under It" - Artsy hand-drawn style */
+	.host-image-wrapper::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-color: var(--c-accent-orange);
+		clip-path: polygon(50% 2%, 2% 98%, 98% 98%);
+		transform: translateY(6px); 
+		opacity: 0.85;
+		z-index: 0;
+	}
+	
+	.host-photo {
+		width: 100%;
+		height: 100%;
+		background-image: url('/hs-erikk.png');
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+		clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+		position: relative;
+		z-index: 1;
+		filter: grayscale(10%); 
+	}
+	
+	.host-name {
+		font-family: var(--font-subheading);
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--c-heading); /* Darker text */
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+	
+	.host-blurb {
+		font-size: 0.875rem;
+		color: var(--c-text-muted);
+		line-height: 1.5;
+	}
+
+	.cta-block h3 {
+		font-size: 1rem;
+		margin-bottom: var(--space-2);
+	}
+	
+	.cta-block p {
+		font-size: 0.875rem;
+		color: var(--c-text-muted);
+	}
+	
+	.listen-links {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+	}
+	
+	.listen-links a {
+		font-family: var(--font-subheading);
+		font-size: 0.875rem;
+		color: var(--c-text-subtle);
+	}
+	
+	.listen-links a:hover {
+		color: var(--c-heading);
+	}
+
+	.projects-block h3 {
+		font-size: 1rem;
+		margin-bottom: var(--space-2);
+	}
+
+	.projects-block p {
+		font-size: 0.875rem;
+		color: var(--c-text-muted);
+		line-height: 1.4;
+	}
+	
+	.projects-block a {
+		text-decoration: underline;
+		text-decoration-color: var(--c-border);
+		color: var(--c-text);
+	}
+	
+	.projects-block a:hover {
+		color: var(--c-heading);
+		text-decoration-color: var(--c-heading);
+	}
+</style>

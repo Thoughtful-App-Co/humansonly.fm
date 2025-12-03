@@ -1,16 +1,159 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
+const allEpisodes: CollectionEntry<'episodes'>[] = await getCollection('episodes');
+const sortedEpisodes = allEpisodes.sort((a: CollectionEntry<'episodes'>, b: CollectionEntry<'episodes'>) => 
+  b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const title = "humansonly.fm — The captcha of podcasts";
+const description = "A semi-anti-technology podcast. Human's first, technology second. Exploring human psychology, anthropology, and how we can pave a middle path between apocalypse and paradise.";
+
+// Format date helper
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
+};
+
+// Roman Numeral Helper (lowercase)
+const toRoman = (num: number): string => {
+  const lookup: { [key: string]: number } = { m: 1000, cm: 900, d: 500, cd: 400, c: 100, xc: 90, l: 50, xl: 40, x: 10, ix: 9, v: 5, iv: 4, i: 1 };
+  let str = '';
+  for (const i in lookup) {
+    while (num >= lookup[i]) {
+      str += i;
+      num -= lookup[i];
+    }
+  }
+  return str;
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title={title} description={description}>
+	
+	<!-- Intro section removed as it is now in the sidebar -->
+
+	<section class="episodes-list">
+		{sortedEpisodes.map((episode: CollectionEntry<'episodes'>) => (
+			<article class="episode-item">
+				<div class="episode-meta">
+					<span class="episode-date">{formatDate(episode.data.pubDate)}</span>
+				</div>
+				<h2 class="episode-title">
+					<a href={`/${episode.slug}`}>
+						<span class="episode-number-bubble">{toRoman(episode.data.episodeNumber)}</span>
+						{episode.data.title}
+					</a>
+				</h2>
+				<p class="episode-excerpt">{episode.data.description}</p>
+				<div class="episode-actions">
+					<a href={`/${episode.slug}`} class="action-link">Listen</a>
+					<span class="separator">/</span>
+					<a href={`/${episode.slug}`} class="action-link">Show notes</a>
+				</div>
+			</article>
+		))}
+	</section>
+
+</Layout>
+
+<style>
+	/* Episode List */
+	.episodes-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-6);
+	}
+
+	.episode-item {
+		padding-bottom: var(--space-6);
+		border-bottom: 1px solid var(--c-border);
+	}
+
+	.episode-item:last-child {
+		border-bottom: none;
+	}
+
+	.episode-meta {
+		margin-bottom: var(--space-1);
+	}
+
+	.episode-date {
+		font-size: 0.8125rem;
+		color: var(--c-text-subtle);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.episode-title {
+		font-size: 1.5rem;
+		margin-bottom: var(--space-2);
+		line-height: 1.25;
+	}
+	
+	.episode-title a {
+		font-family: var(--font-subheading); /* Explicitly set font */
+		font-weight: 600;
+		color: var(--c-heading);
+		border: none;
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+	}
+
+	.episode-title a:hover {
+		color: var(--c-text-muted);
+	}
+	
+	.episode-number-bubble {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background-color: transparent;
+		color: var(--c-heading);
+		font-family: var(--font-subheading);
+		font-size: 0.875rem;
+		font-weight: 600;
+		min-width: 2.25rem;
+		height: 2.25rem;
+		padding: 0 0.5rem;
+		/* Hand-drawn circle effect */
+		border: 2px solid var(--c-heading);
+		border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+		transition: transform 0.2s ease, border-color 0.2s ease;
+	}
+	
+	/* Lift effect on hover */
+	.episode-title a:hover .episode-number-bubble {
+		transform: scale(1.05); /* Subtle scale only */
+		border-color: var(--c-accent-orange);
+		color: var(--c-accent-orange);
+		box-shadow: none;
+	}
+
+	.episode-excerpt {
+		color: var(--c-text-muted);
+		margin-bottom: var(--space-3);
+		max-width: 38rem;
+	}
+
+	.episode-actions {
+		font-size: 0.9375rem;
+		color: var(--c-text-subtle);
+	}
+
+	.action-link {
+		color: var(--c-text);
+		font-weight: 500;
+	}
+
+	.separator {
+		margin: 0 var(--space-1);
+		color: var(--c-border);
+	}
+</style>

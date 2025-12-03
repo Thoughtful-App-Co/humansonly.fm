@@ -1,0 +1,201 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const episodes = await getCollection('episodes');
+  return episodes.map((episode: CollectionEntry<'episodes'>) => ({
+    params: { slug: episode.slug },
+    props: { episode },
+  }));
+}
+
+interface Props {
+  episode: CollectionEntry<'episodes'>;
+}
+
+const { episode } = Astro.props;
+const { Content } = await episode.render();
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
+};
+
+// Roman Numeral Helper (lowercase)
+const toRoman = (num: number): string => {
+  const lookup: { [key: string]: number } = { m: 1000, cm: 900, d: 500, cd: 400, c: 100, xc: 90, l: 50, xl: 40, x: 10, ix: 9, v: 5, iv: 4, i: 1 };
+  let str = '';
+  for (const i in lookup) {
+    while (num >= lookup[i]) {
+      str += i;
+      num -= lookup[i];
+    }
+  }
+  return str;
+};
+---
+
+<Layout title={`${episode.data.title} — humansonly.fm`} description={episode.data.description}>
+	<article class="episode-detail">
+		<header class="episode-header">
+			<div class="meta">
+				<span class="date">{formatDate(episode.data.pubDate)}</span>
+				<div class="number-container">
+					Episode <span class="episode-number-bubble">{toRoman(episode.data.episodeNumber)}</span>
+				</div>
+			</div>
+			<h1 class="title">{episode.data.title}</h1>
+			<p class="lead">{episode.data.description}</p>
+			
+			<div class="player-actions">
+				{episode.data.spotifyUrl && (
+					<a href={episode.data.spotifyUrl} target="_blank" rel="noopener" class="button-primary">
+						Listen on Spotify
+					</a>
+				)}
+				{/* Add more player links here if available */}
+			</div>
+		</header>
+
+		<div class="content prose">
+			<Content />
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.episode-header {
+		margin-bottom: var(--space-6);
+		padding-bottom: var(--space-6);
+		border-bottom: 1px solid var(--c-border);
+	}
+
+	.meta {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		font-size: 0.8125rem;
+		color: var(--c-text-subtle);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-bottom: var(--space-2);
+	}
+	
+	.number-container {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+	}
+	
+	.episode-number-bubble {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background-color: transparent;
+		color: var(--c-heading);
+		font-family: var(--font-subheading);
+		font-size: 0.75rem;
+		font-weight: 600;
+		min-width: 1.75rem;
+		height: 1.75rem;
+		padding: 0 0.4rem;
+		/* Hand-drawn circle effect */
+		border: 2px solid var(--c-heading);
+		border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+		text-transform: none;
+	}
+
+	.title {
+		font-size: 2rem;
+		margin-bottom: var(--space-3);
+		color: var(--c-heading);
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		color: var(--c-text-muted);
+		margin-bottom: var(--space-4);
+		max-width: 40rem;
+	}
+
+	.player-actions {
+		display: flex;
+		gap: var(--space-2);
+	}
+
+	.button-primary {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background-color: var(--c-text);
+		color: var(--c-bg);
+		font-weight: 500;
+		border-radius: 4px;
+		font-size: 0.9375rem;
+		transition: background-color 0.2s ease;
+		border: none;
+	}
+
+	.button-primary:hover {
+		background-color: var(--c-heading);
+		color: var(--c-bg);
+		border: none;
+	}
+
+	/* Minimalist Prose (Markdown Content) Styling */
+	.prose {
+		max-width: 38rem; /* Optimal line length */
+		color: var(--c-text);
+	}
+
+	.prose :global(h2) {
+		font-size: 1.5rem;
+		margin-top: var(--space-6);
+		margin-bottom: var(--space-3);
+		color: var(--c-heading);
+	}
+
+	.prose :global(h3) {
+		font-size: 1.25rem;
+		margin-top: var(--space-4);
+		margin-bottom: var(--space-2);
+		color: var(--c-heading);
+	}
+
+	.prose :global(p) {
+		margin-bottom: var(--space-3);
+		line-height: 1.7;
+	}
+
+	.prose :global(a) {
+		text-decoration: underline;
+		text-decoration-color: var(--c-border);
+		color: var(--c-text);
+	}
+
+	.prose :global(a:hover) {
+		text-decoration-color: var(--c-text);
+		color: var(--c-heading);
+	}
+
+	.prose :global(ul), .prose :global(ol) {
+		margin-bottom: var(--space-3);
+		padding-left: var(--space-3);
+	}
+
+	.prose :global(li) {
+		margin-bottom: var(--space-1);
+	}
+
+	.prose :global(blockquote) {
+		border-left: 2px solid var(--c-border);
+		padding-left: var(--space-3);
+		font-style: italic;
+		color: var(--c-text-muted);
+		margin: var(--space-4) 0;
+	}
+</style>

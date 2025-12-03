@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "About — humansonly.fm";
+const description = "The philosophy behind Humans Only: A semi-anti-technology podcast.";
+---
+
+<Layout title={title} description={description}>
+	<article class="about-page">
+		<header class="page-header">
+			<h1 class="title">About Humans Only</h1>
+		</header>
+
+		<div class="prose">
+			<p class="lead">
+				We are the captcha of podcasts. Proving we are human in an increasingly synthetic world.
+			</p>
+
+			<p>
+				<strong>Humans Only</strong> is a semi-anti-technology podcast. This doesn't mean we are luddites, but rather that we believe in a strict hierarchy: <em>Human's first, technology second.</em>
+			</p>
+
+			<h2>Our Philosophy</h2>
+			<p>
+				We explore current software, applications, and technology markets through the lens of:
+			</p>
+			<ul>
+				<li>Human Psychology & Anthropology</li>
+				<li>Industrial Psychology</li>
+				<li>Morality & Ethics</li>
+				<li>Free Markets</li>
+			</ul>
+
+			<p>
+				Our goal is to pave a "middle path" between the extremes of tech-utopianism (paradise) and doomerism (apocalypse). We find truth in the balance between comedy and tragedy.
+			</p>
+			
+			<p>
+				Hosted by <a href="https://shupp.dev" target="_blank"><strong>Erikk Shupp</strong></a>.
+			</p>
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.page-header {
+		margin-bottom: var(--space-6);
+		padding-bottom: var(--space-4);
+		border-bottom: 1px solid var(--c-border);
+	}
+
+	.title {
+		font-size: 2rem;
+		color: var(--c-heading);
+		letter-spacing: -0.02em;
+	}
+
+	.lead {
+		font-size: 1.25rem;
+		color: var(--c-heading);
+		margin-bottom: var(--space-4);
+		line-height: 1.4;
+	}
+
+	/* Reuse Prose Styles */
+	.prose {
+		max-width: 38rem;
+		color: var(--c-text);
+	}
+
+	.prose h2 {
+		font-size: 1.5rem;
+		margin-top: var(--space-6);
+		margin-bottom: var(--space-3);
+		color: var(--c-accent-gunmetal); /* Accent color for subheads */
+	}
+
+	.prose p {
+		margin-bottom: var(--space-3);
+		line-height: 1.7;
+	}
+
+	.prose ul {
+		margin-bottom: var(--space-3);
+		padding-left: var(--space-3);
+		color: var(--c-text-muted);
+	}
+
+	.prose li {
+		margin-bottom: var(--space-1);
+	}
+	
+	.prose a {
+		text-decoration: underline;
+		text-decoration-color: var(--c-accent-orange); /* Orange underlines for links */
+		color: var(--c-text);
+	}
+	
+	.prose a:hover {
+		color: var(--c-heading);
+		text-decoration-color: var(--c-heading);
+	}
+</style>
