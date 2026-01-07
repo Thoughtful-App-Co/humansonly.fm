@@ -1,5 +1,5 @@
 ---
-title: "Humans Only App Development Principles"
+title: "The Dark Arts of Dark Pattern UX and Human-First App Design"
 description: "Delve into the evil arts in user experience, the presence of dark patterns in app design, the impact of variable rewards and threat signaling, attention depletion and social comparison, and the violation of user autonomy through dark patterns."
 pubDate: 2025-01-07
 episodeNumber: 2
