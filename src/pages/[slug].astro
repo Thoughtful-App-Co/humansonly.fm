@@ -58,13 +58,31 @@ const toRoman = (num: number): string => {
 						Listen on Spotify
 					</a>
 				)}
-				{/* Add more player links here if available */}
+				{episode.data.youtubeUrl && (
+					<a href={episode.data.youtubeUrl} target="_blank" rel="noopener" class="button-secondary">
+						Watch on YouTube
+					</a>
+				)}
 			</div>
 		</header>
 
 		<div class="content prose">
 			<Content />
 		</div>
+
+		{episode.data.shorts && episode.data.shorts.length > 0 && (
+			<aside class="shorts-section">
+				<h2>Clips & Highlights</h2>
+				<div class="shorts-grid">
+					{episode.data.shorts.map((short) => (
+						<a href={short.url} target="_blank" rel="noopener" class="short-card">
+							<span class="short-platform">{short.platform || 'video'}</span>
+							<span class="short-title">{short.title}</span>
+						</a>
+					))}
+				</div>
+			</aside>
+		)}
 	</article>
 </Layout>
 
@@ -146,6 +164,24 @@ const toRoman = (num: number): string => {
 		border: none;
 	}
 
+	.button-secondary {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background-color: transparent;
+		color: var(--c-text);
+		font-weight: 500;
+		border-radius: 4px;
+		font-size: 0.9375rem;
+		transition: background-color 0.2s ease, border-color 0.2s ease;
+		border: 1px solid var(--c-border);
+	}
+
+	.button-secondary:hover {
+		background-color: var(--c-bg-alt);
+		border-color: var(--c-text);
+		color: var(--c-heading);
+	}
+
 	/* Minimalist Prose (Markdown Content) Styling */
 	.prose {
 		max-width: 38rem; /* Optimal line length */
@@ -197,5 +233,53 @@ const toRoman = (num: number): string => {
 		font-style: italic;
 		color: var(--c-text-muted);
 		margin: var(--space-4) 0;
+	}
+
+	/* Shorts/Clips Section */
+	.shorts-section {
+		margin-top: var(--space-6);
+		padding-top: var(--space-6);
+		border-top: 1px solid var(--c-border);
+	}
+
+	.shorts-section h2 {
+		font-size: 1.25rem;
+		margin-bottom: var(--space-4);
+		color: var(--c-heading);
+	}
+
+	.shorts-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: var(--space-3);
+	}
+
+	.short-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+		padding: var(--space-3);
+		background-color: var(--c-bg-alt);
+		border: 1px solid var(--c-border);
+		border-radius: 6px;
+		transition: border-color 0.2s ease, background-color 0.2s ease;
+	}
+
+	.short-card:hover {
+		border-color: var(--c-text);
+		background-color: var(--c-bg);
+	}
+
+	.short-platform {
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--c-text-subtle);
+	}
+
+	.short-title {
+		font-size: 0.9375rem;
+		color: var(--c-text);
+		font-weight: 500;
 	}
 </style>

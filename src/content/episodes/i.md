@@ -4,6 +4,7 @@ description: "The inaugural episode: exploring why humans should come first, tec
 pubDate: 2024-12-01
 episodeNumber: 1
 spotifyUrl: "https://open.spotify.com/episode/6R5N9957YkGaSoAGyRnFeJ?si=447aff6052064bd4"
+youtubeUrl: "https://youtu.be/7Qtw1Bb77UI"
 ---
 
 In this inaugural episode, we introduce the philosophy of the podcast: human-first, technology-second. We explore why a semi-anti-technology perspective matters in today's AI-saturated world. Technology should serve humanity, not the other way around.
