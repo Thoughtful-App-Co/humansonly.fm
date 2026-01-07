@@ -41,6 +41,11 @@ const toRoman = (num: number): string => {
 ---
 
 <Layout title={`${episode.data.title} — humansonly.fm`} description={episode.data.description}>
+	<nav class="breadcrumb">
+		<a href="/">Episodes</a>
+		<span class="separator">/</span>
+		<span class="current">Episode {toRoman(episode.data.episodeNumber)}</span>
+	</nav>
 	<article class="episode-detail">
 		<header class="episode-header">
 			<div class="meta">
@@ -87,6 +92,32 @@ const toRoman = (num: number): string => {
 </Layout>
 
 <style>
+	.breadcrumb {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		font-size: 0.875rem;
+		margin-bottom: var(--space-4);
+	}
+
+	.breadcrumb a {
+		color: var(--c-text-muted);
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.breadcrumb a:hover {
+		color: var(--c-heading);
+	}
+
+	.breadcrumb .separator {
+		color: var(--c-text-subtle);
+	}
+
+	.breadcrumb .current {
+		color: var(--c-text);
+	}
+
 	.episode-header {
 		margin-bottom: var(--space-6);
 		padding-bottom: var(--space-6);
