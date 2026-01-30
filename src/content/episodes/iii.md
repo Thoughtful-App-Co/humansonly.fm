@@ -7,7 +7,7 @@ spotifyUrl: "https://open.spotify.com/episode/4axsoyaq5BwbEPmeRv6FSn?si=KPZNmXBx
 youtubeUrl: "https://youtu.be/yqPDuuMReKo"
 ---
 
-A deep dive on the events of the past that brought you the current viral form of ingesting information: short-form videos. You may have read on how short videos are bad (especially children) but how did we get from reading newspaper ads to watching a ai generated videos rotting your brain? The simple metric is attention. Its free, can have the most intrinsic value in driving sales and is the last real frontier for marketers (and for that fact everyone selling something). Take a ride through history of the attention economy and how we got here, and where we might be going-- on Humans Only!
+A deep dive on the events of the past that brought you the current viral form of ingesting information: short-form videos. You may have read about how short videos are bad (especially for children) but how did we get from reading newspaper ads to watching AI-generated videos rotting your brain? The simple metric is attention. It's free, can have the most intrinsic value in driving sales, and is the last real frontier for marketers (and for that matter, everyone selling something). Take a ride through the history of the attention economy and how we got here, and where we might be going—on Humans Only!
 
 ## Topics Covered
 
