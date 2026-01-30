@@ -59,28 +59,6 @@ A deep dive on the events of the past that brought you the current viral form of
 
 - YouTube Creator Statistics (2023) — Top 3% of channels capture 90% of total views.
 
-### Regulatory & Design Frameworks
-
-**EU Digital Services Act (2024)**
-
-- Requires non-personalized feed option
-- Bans targeted advertising to minors
-- Prohibits deceptive design patterns
-- Penalties up to 6% global revenue
-
-**EU Digital Fairness Act (Expected 2026)**
-
-- Proposed bans: infinite scroll, autoplay, constant notifications, read receipts, streaks
-- Introduces "Right Not to Be Disturbed"
-
-**Calm Technology**
-
-- [Weiser, M., & Brown, J.S. (1995). "Designing Calm Technology." Xerox PARC](https://calmtech.com/papers/designing-calm-technology.html) — Original framework: technology should require minimum attention and exist at the periphery.
-
-- Case, A. (2015). *Calm Technology: Principles and Patterns for Non-Intrusive Design* — Eight principles for respectful design.
-
-- [Calm Tech Institute (2024). Calm Tech Certified™ Program](https://calmtech.institute/)
-
 ## Links & Resources
 
 ### Key Books
@@ -88,22 +66,6 @@ A deep dive on the events of the past that brought you the current viral form of
 - Simon, H. (1971). "Designing Organizations for an Information-Rich World" — Origin of "attention economy" concept
 - Goldhaber, M. (1997). "The Attention Economy and the Net" — First digital application
 - Wu, T. (2016). *The Attention Merchants* — Historical account
-- Williams, J. (2018). *Stand Out of Our Light* — Three types of attention under assault
-- Newport, C. (2019). *Digital Minimalism* — 30-day declutter protocol
-- Zuboff, S. (2019). *The Age of Surveillance Capitalism* — Behavioral extraction economics
-- Mark, G. (2023). *Attention Span* — 20 years of attention research
-- Haidt, J. (2024). *The Anxious Generation* — Smartphone childhood impacts
-
-### Organizations
-
-- [Center for Humane Technology](https://humanetech.com/)
-- [Calm Tech Institute](https://calmtech.institute/)
-- [Deceptive.Design (Harry Brignull)](https://www.deceptive.design/) — Dark patterns catalog
-
-### Films & Media
-
-- *The Social Dilemma* (2020) — Netflix documentary featuring former tech insiders
-- ["Your Undivided Attention" Podcast](https://www.humanetech.com/podcast) — Center for Humane Technology / TED Audio Collective
 
 ### Tools
 
