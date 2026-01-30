@@ -72,12 +72,6 @@ A deep dive on the events of the past that brought you the current viral form of
 - One Sec App — 57% usage reduction from one-second friction
 - [Self-Determination Theory](https://selfdeterminationtheory.org/)
 
-## Episode Callbacks
-
-- **Episode 2: "App Development Principles"** — Mechanics of manipulation (variable rewards, infinite scroll, notification hijacking)
-- **Episode 3 (this episode)** — The economic and neurological *why* behind those mechanics
-- **Episode 4 (upcoming): "Local-First"** — Why keeping data on-device is an act of resistance
-
 ---
 
 *This is Humans Only. I'm Erikk Shupp.*
