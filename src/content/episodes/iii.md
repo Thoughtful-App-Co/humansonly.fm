@@ -1,28 +1,19 @@
 ---
 title: "The Attention Economy"
-description: "Your attention is the most valuable commodity on earth—and you're not the one profiting from it. From the penny press to TikTok, a $650 billion industry has been built on capturing, monetizing, and depleting the finite resource between your ears."
+description: "A deep dive on the events of the past that brought you the current viral form of ingesting information: short-form videos. Take a ride through the history of the attention economy and how we got here, and where we might be going."
 pubDate: 2025-01-30
 episodeNumber: 3
 spotifyUrl: "https://open.spotify.com/episode/4axsoyaq5BwbEPmeRv6FSn?si=KPZNmXBxSJ-BxA_f3mjInA"
 youtubeUrl: "https://youtu.be/yqPDuuMReKo"
 ---
 
-Your attention is the most valuable commodity on earth—and you're not the one profiting from it. From the penny press to TikTok, a $650 billion industry has been built on capturing, monetizing, and depleting the finite resource between your ears.
-
-In this episode, we trace the history of attention as a product, break down the neuroscience of why you can't look away, and examine who actually benefits when "anyone can be a creator."
+A deep dive on the events of the past that brought you the current viral form of ingesting information: short-form videos. You may have read on how short videos are bad (especially children) but how did we get from reading newspaper ads to watching a ai generated videos rotting your brain? The simple metric is attention. Its free, can have the most intrinsic value in driving sales and is the last real frontier for marketers (and for that fact everyone selling something). Take a ride through history of the attention economy and how we got here, and where we might be going-- on Humans Only!
 
 ## Topics Covered
 
 - The history of attention commodification (1833–2025)
 - How the HTTP cookie went from privacy tool to surveillance weapon
-- The three attention systems: alarm, spotlight, and executive
-- Why notifications hijack threat-detection circuitry
-- The 25-minute recovery cost of every interruption
-- Variable rewards and the dopamine prediction error
-- The creator economy shell game: who actually wins
-- Platform economics: the equation that doesn't include your wellbeing
-- EU regulatory responses and Calm Technology principles
-- TACo design philosophy as counter-model
+- The forefathers and founders of Attention as a commodity and the literature/thought leaders around this prior to modern attention economics
 
 ## Show Notes & Citations
 
