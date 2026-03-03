@@ -24,6 +24,15 @@ const { title, description = "A podcast about human-centered technology." } = As
 		<meta property="og:url" content={Astro.url} />
 		<meta name="twitter:card" content="summary_large_image" />
 		
+		<!-- Theme (prevents flash of wrong theme) -->
+		<script is:inline>
+			(function() {
+				const theme = localStorage.getItem('theme') ||
+					(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+				document.documentElement.setAttribute('data-theme', theme);
+			})();
+		</script>
+
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,8 +51,12 @@ const { title, description = "A podcast about human-centered technology." } = As
 						Thoughtful App Co
 						<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="external-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
 					</a>
+					<button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+						<svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+						<svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+					</button>
 				</nav>
-				
+
 				<div class="sidebar-block host-profile">
 					<div class="host-image-wrapper">
 						<div class="host-photo" role="img" aria-label="Erikk Shupp"></div>
@@ -87,6 +100,14 @@ const { title, description = "A podcast about human-centered technology." } = As
 				<slot />
 			</main>
 		</div>
+		<script is:inline>
+			document.getElementById('theme-toggle').addEventListener('click', function() {
+				const current = document.documentElement.getAttribute('data-theme');
+				const next = current === 'dark' ? 'light' : 'dark';
+				document.documentElement.setAttribute('data-theme', next);
+				localStorage.setItem('theme', next);
+			});
+		</script>
 	</body>
 </html>
 
@@ -94,19 +115,19 @@ const { title, description = "A podcast about human-centered technology." } = As
 	:root {
 		/* Palette: Silver / Charcoal / Stone / Clay (Warm Grays) */
 		/* Hue ~30deg for warmth */
-		
+
 		--c-bg: hsl(30, 10%, 97%);        /* Almost white clay */
 		--c-surface: hsl(30, 8%, 93%);    /* Light stone */
-		--c-surface-hover: hsl(30, 8%, 90%); 
+		--c-surface-hover: hsl(30, 8%, 90%);
 		--c-border: hsl(30, 6%, 86%);     /* Silver */
-		
+
 		--c-text-subtle: hsl(30, 4%, 60%); /* Muted silver */
 		--c-text-muted: hsl(30, 4%, 45%);  /* Stone gray */
 		--c-text: hsl(30, 4%, 25%);        /* Charcoal */
 		--c-heading: hsl(30, 4%, 10%);     /* Deep charcoal/black */
-		
+
 		--c-accent: hsl(30, 6%, 50%);      /* Balanced clay/stone */
-		
+
 		/* New Accents */
 		--c-accent-gunmetal: hsl(260, 20%, 30%); /* Deep Purple Gunmetal */
 		--c-accent-orange: hsl(25, 100%, 50%);   /* Crazy Bright Orange */
@@ -124,6 +145,24 @@ const { title, description = "A podcast about human-centered technology." } = As
 		--font-subheading: 'Fira Sans', sans-serif;
 		--font-body: 'Kameron', serif;
 		--font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+	}
+
+	/* Dark Mode */
+	[data-theme="dark"] {
+		--c-bg: hsl(30, 8%, 10%);
+		--c-surface: hsl(30, 6%, 14%);
+		--c-surface-hover: hsl(30, 6%, 18%);
+		--c-border: hsl(30, 4%, 22%);
+
+		--c-text-subtle: hsl(30, 4%, 45%);
+		--c-text-muted: hsl(30, 4%, 60%);
+		--c-text: hsl(30, 6%, 80%);
+		--c-heading: hsl(30, 8%, 92%);
+
+		--c-accent: hsl(30, 6%, 55%);
+
+		--c-accent-gunmetal: hsl(260, 25%, 65%);
+		--c-accent-orange: hsl(25, 100%, 55%);
 	}
 
 	/* Minimalist Reset */
@@ -398,4 +437,32 @@ const { title, description = "A podcast about human-centered technology." } = As
 		color: var(--c-heading);
 		text-decoration-color: var(--c-heading);
 	}
+
+	/* Theme Toggle */
+	.theme-toggle {
+		background: none;
+		border: 1px solid var(--c-border);
+		border-radius: 4px;
+		cursor: pointer;
+		padding: 6px;
+		color: var(--c-text-muted);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		transition: color 0.2s ease, border-color 0.2s ease;
+		width: fit-content;
+	}
+
+	.theme-toggle:hover {
+		color: var(--c-heading);
+		border-color: var(--c-text-subtle);
+	}
+
+	/* Light mode: show moon, hide sun */
+	.icon-sun { display: none; }
+	.icon-moon { display: block; }
+
+	/* Dark mode: show sun, hide moon */
+	[data-theme="dark"] .icon-sun { display: block; }
+	[data-theme="dark"] .icon-moon { display: none; }
 </style>
