@@ -4,7 +4,7 @@ description: "The Science of Brainrot and Analog Social Technologies. This episo
 pubDate: 2026-05-06
 episodeNumber: 4
 audioUrl: "https://anchor.fm/s/10c113714/podcast/play/119555352/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-4-6%2F423567459-44100-2-2793b988b9872.mp3"
-spotifyUrl: "https://open.spotify.com/episode/e3iv1qo"
+spotifyUrl: "https://open.spotify.com/episode/5ln8K2lkknY1siAL7VsKZ6"
 youtubeUrl: "https://www.youtube.com/watch?v=Ro_Zuk3if_0"
 duration: "00:39:56"
 ---
