@@ -43,3 +43,4 @@ Thumbs.db
 # testing
 coverage/
 .nyc_output/
+.orchestrator-pending.manifest.md
